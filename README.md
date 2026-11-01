@@ -8,7 +8,7 @@ track it for my Gaisce project.
 All code is written manually by me, with AI used to help with and document
 certain things.
 
-The site is hosted on Neocities [here](ruster.neocities.org).
+The site is hosted on Neocities [here](https://ruster.neocities.org).
 
 ## Changelog
 
