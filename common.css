@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --banner-delay: 8s;
+    --is-banner-start: 1;
+}
+
+.page {
+    justify-content: space-between;
+    gap: 10px;
+    height: fit-content;
+
+    box-sizing: border-box;
+    display: flex;
+
+    /* background-color: lightgray; */
+  
+    margin: 20px  auto;
+    width: 75%;  
+    padding: 20px;
+}
+
+.side {
+    box-sizing: border-box;
+    display: flex;
+
+    /* background-color: darkgray; */
+
+    flex: 1 1 0;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.layer {
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 1 0;
+
+    /* background-color: gray; */
+
+    gap: 10px;
+    width: 100%;
+    min-height: fit-content;
+    min-height: -moz-fit-content;
+}
+
+.box {
+    width: 100%;
+    padding: 2vw;
+    font-size: 20px;
+    height: auto;
+
+    text-align: center;
+
+    border-style: solid;
+    border-radius: 10px;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.paragraph-box {
+    max-height: 30vh;
+    box-sizing: border-box;
+    min-height: 100%;
+    overflow: auto;
+}
+
+#menu {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-x: hide;
+    padding: 10px 10px 10px;
+    overflow: visible;
+}
+
+.link {
+    text-decoration: none;
+    color: purple;
+    font-weight: bold;
+}
+
+.link:hover {
+    cursor: pointer;
+}
+
+#current::after {
+    content: "<";
+}
+
+#current::before {
+    content: ">";
+}
+
+.side1 {
+    flex: 4 1 0;
+}
+
+.menu-item {
+    white-space: nowrap;
+}
+
+.images {
+    padding: 5px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-radius: 3vw;
+    width: 50vw;
+    height: 20vw;
+    margin: 10px auto;
+    background-color: gray;
+}
+
+.images .inner{
+    border-radius: calc(3vw - 5px);
+    display: flex;
+    box-sizing: border-box;
+    overflow: clip;
+    width: 100%;
+    height: 100%;
+
+    gap: 5px;
+}
+
+.image-side {
+    display: flex;
+    flex: 1 1 0;
+    overflow:hidden;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.image-layer {
+    display: flex;
+    gap: 5px;
+    flex: 1 1 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.img {
+    flex: 1 1 0;
+    height: 100%;
+    position: relative;
+}
+
+.img img {
+    object-position: top left;
+    object-fit:cover;
+    height: 100%;
+    border-radius: calc(1vw - 5px);
+    transition: transform 0.2s;
+}
+
+.img.closed:hover img {
+    transform: scale(1.1);
+}
+
+.expand {
+    cursor: pointer;
+}
+
+.img.open img{
+    width: 50vw;
+    height: auto;
+    margin: auto auto auto auto;
+    justify-self: center;
+    border-radius: 3vw;
+}
+
+.img.open {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0 0 0/0.7);
+}
+
+.img.closed .caption{
+    position: fixed;
+    font-size: 0;
+}
+
+.img.open .caption {
+    position: relative;
+    opacity: 1;
+    margin: 0 auto auto auto;
+    padding: 5px;
+    border-radius: 3px;
+    max-width: 90vw;
+
+    background-color: rgb(0 0 0/0.5);
+    color: white;
+    font-size: 40px;
+}
+
+.expand-button {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    max-height: 100px;
+    position:absolute;
+    top: 0;
+    left: 0;
+    /* background-color: red; */
+}
+
+.expand-button-img {
+    background-image: url("images/expand-menu.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    position:absolute;
+}
+
+.content{
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.content.closed {
+    max-height: 0 !important;
+    pointer-events: none;
+}
+
+.content .text {
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.side2 {
+    height: auto;
+}
+
+*::-webkit-scrollbar,body::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+    width: 5px;
+}
+
+* {
+    scrollbar-width: 5px;
+    scrollbar-color: #888;
+}
+
+/* ---------- Title ---------- */
+
+#title,.title-img {
+    height: 100%;
+}
+
+#title-box {
+    height: 20vw;
+    width: fit-content;
+    margin: 20px auto;
+    display: block;
+    position: relative;
+}
+
+.banner {
+    width: 80%;
+    left: calc(10%);
+    bottom: 12%;
+    background-color: lightgray;
+    position: absolute;
+    transform: rotate(-1.3deg);
+    overflow: hidden;
+    white-space: nowrap;
+    border-radius: 2px;
+    border-width: 0.5vw;
+    border-style: solid;
+    border-width: 2px;
+}
+
+#container {
+    overflow: hidden;
+    background-color:dimgray;
+    padding: 0.25vw;
+    border-width: 0.5vw;
+    border-color: lightgray;
+    border-style: inset;
+    padding: 2px;
+}
+
+#padding {
+    overflow: hidden;
+    position: relative;
+    height: fit-content;
+}
+
+#scroll {
+    align-items: center;
+    height: fit-content;
+    display: inline-flex;
+    width: fit-content;
+    font-size: 2vw;
+    box-sizing: border-box;
+}
+
+#scroll.on {
+    animation: scroll calc(var(--scroll-speed) * var(--is-banner-start)) cubic-bezier(.23,.03,0,-0.02) var(--banner-delay),
+               scroll var(--scroll-speed) linear infinite calc((var(--scroll-speed) * var(--is-banner-start)) + var(--banner-delay));
+}
+
+.item::after {
+    white-space: preserve nowrap;
+    content: "  ///  ";
+}
+
+.banner .caption {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    background-color: dimgray;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+}
+
+#banner-slider {
+    animation: slider 5s ease 1 2s;
+    transform: translateX(-100%);
+}
+
+@keyframes scroll {
+    from {transform: translateX(0%);}
+    to {transform: translateX(var(--scroll-width));}
+}
+
+@keyframes slider {
+    0% {transform: translateX(-100%);}
+    15% {transform: translateX(0%);}
+    85% {transform: translateX(0%);}
+    100% {transform: translateX(-100%);}
+}
+
+.warning-banner {
+    background-color: red;
+    padding: 10px;
+    width: 65vw;
+    margin: 0 auto;
+    border-radius: 10px;
+    border-style: solid;
+    text-align: center;
+}

@@ -1,0 +1,8 @@
+
+.link[title=Projects]::before {
+    content: ">";
+}
+
+.link[title=Projects]::after {
+    content: "<";
+}

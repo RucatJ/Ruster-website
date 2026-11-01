@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <!-- <link rel="stylesheet" href="/common.css"> -->
+    <link rel="stylesheet" href="/projects/styles.css">
+    <meta charset="utf-8">
+    <title>Rúster</title>
+</head>
+
+<body>
+    <!-- The page -->
+    <div class="page">
+        <!-- One 'side' of the page -->
+        <div class="side side1">
+            <!-- One box in this layer -->
+            <div class="layer layer1 box box1">
+                This is where I'll put various projects of mine, in Python,
+                Javascript (games might go in another section though), etc.
+                I like coding and I'm hoping to have plenty of stuff here
+                eventually, so stay tuned!
+            </div>
+        </div>
+        <div class="side side2 box box1" id="menu">
+        </div>
+    </div>
+    <div class="page">
+            <div class="box box1">
+                <div class="expand-button-img"></div>
+                <div class="expand-button" onclick="expand(this.parentElement.querySelector('.content'))"></div>
+                <h4>Laser Tripwire</h4>
+                <div class="content closed">
+                    <!-- 9/3/26 -->
+                    <div>
+                        <br>
+                        <b>9/3/26</b>
+                        <div class="images">
+                            <div class="inner">
+                                <div class="img image-side expand closed">
+                                    <img src="/images/stuff_and_things.jpg">
+                                    <div class="caption">
+                                        So we got the ESP32-C3, and a VL53L0X ToF sensor
+                                    </div>
+                                </div>
+                                <div class="image-side">
+                                    <div class="img image-side expand closed">
+                                        <img src="/images/first_solder.jpg">
+                                    <div class="caption">
+                                        This is my first time soldering! It was pretty easy I thought,
+                                        even with my cheap soldering iron :).
+                                    </div>
+                                    </div>
+                                    <div class="image-layer">
+                                        <div class="img image-side expand closed">
+                                            <img src="/images/sensor.jpg">
+                                        <div class="caption">
+                                            Got the sensor working!
+                                        </div>
+                                        </div>
+                                        <div class="img image-side expand closed">
+                                            <img src="/images/new_setup.jpg">
+                                            <div class="caption">
+                                                Here's the setup so far. I didn't solder the sensor
+                                                because my soldering iron got all oxidized and i don't have
+                                                a brass sponge, nor did a regular sponge work.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text">
+                            This is a small project I'm working on. It's an ESP32-based 
+                            laser tripwire. It uses a vl53l0x time-of-flight laser distance
+                            sensor as the 'tripwire' and in theory will detect a person
+                            and wirelessly communicate with another module somewhere else,
+                            which will beep or flash or something.
+                            <br><br>
+                            So far I've got my parts (except for the batteries which haven't
+                            arrived yet) and got the laser distance sensor to work. I've started on
+                            the actual code for the tripwire (calibration, detection, communication.)
+                            <br><br>
+                            I'll post updates whenever I make some meaningful progress!
+                        </div>
+                    </div>
+                    <!-- 28/3/26 -->
+                    <div>
+                        <br>
+                        <b>28/3/26</b>
+                        <div class="images">
+                            <div class="inner">
+                                <div class="img image-side expand closed">
+                                    <img src="/images/communication.png">
+                                    <div class="caption">Here's the two boards communicating!!!
+                                        (Their outputs are in the serial monitor at the bottom)
+                                    </div>
+                                </div>
+                                <div class="img image-side expand closed">
+                                    <img src="/images/antennas.jpg">
+                                    <div class="caption">
+                                        Here's the boards with their antennas.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text">
+                            So I've got the wireless communication working! (and the
+                            callibration for the sensor, but who cares about that?)
+                            It's really cool how one can just send a text message to the other,
+                            and apparently the antenna allows for a range of over a hundred meters.
+                            This is such a cool piece of hardware!
+                            <br><br>
+                            I picked this up today for the first time in a week, and two small 
+                            fixes later, it just worked. Turns out I forgot to plug in the external antenna.
+                            (It comes with a small built-in antenna, but apparently it isn't powerful enough.)
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="/projects/script.js"></script>
+</body>
+
+</html>
