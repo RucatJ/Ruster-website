@@ -6,3 +6,8 @@
 .link[title=Projects]::after {
     content: "<";
 }
+
+#pageContainer .layer1 .box1 {
+    display: flex;
+    flex: 2 1 0;
+}
