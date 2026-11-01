@@ -1,19 +1,18 @@
-let params = new URLSearchParams(document.location.search)
-const url = new URL(window.location)
-let page = url.searchParams.get("z")
-
-page = page ? page : "/home";
-
-const root = document.documentElement;
+let params = new URLSearchParams(document.location.search);
+const url = new URL(window.location);
+let page = url.searchParams.get("z");
 
 let stuff = ",?!=+-_/ ";
 let titleBase = "Rúster";
 var writing = [];
 let views = 0;
+let root = document.documentElement;
 
 let scriptsToExecute = 0;
 let scriptLoaded = new CustomEvent("script-loaded");
 let scriptFinished = new CustomEvent("script-finish");
+let mainPageDone = new CustomEvent("main-page-done");
+let pageDone = new CustomEvent("page-done");
 
 const items = [
     "Welcome to the mashed potatoverse",
@@ -68,6 +67,7 @@ if (mobile) {
 
 // Runs after boilerplate has loaded
 
+window.addEventListener("main-page-done", afterMainLoad);
 function afterMainLoad() {
     console.log("After main load");
     views = viewCount();
@@ -77,6 +77,7 @@ function afterMainLoad() {
 
 // Runs after html from other pages has loaded + some other stuff
 
+window.addEventListener("page-done", afterLoad);
 function afterLoad() {
     console.log("After load");
     setUpLinks();
@@ -84,6 +85,13 @@ function afterLoad() {
 }
 
 /*----------- Functions -----------*/
+
+async function checkPath(path) {
+    let result
+    try {result = await fetch(path, {method: "head"});}
+    finally {if (result) if (!result.ok) return false;}
+    return true
+}
 
 async function loadShit() {
     document.addEventListener("script-loaded", () => {
@@ -98,8 +106,15 @@ async function loadShit() {
     })
 
     await loadHTML("title-box", "/loaf/title.html");
-    afterMainLoad();
-    await loadHTML("pageContainer", page);
+    window.dispatchEvent(mainPageDone);
+
+    // Check if desired page exists
+    if (await checkPath(page)) {
+        await loadHTML("pageContainer", page);
+    } else {
+        await onPageNull();
+    }
+    window.dispatchEvent(pageDone);
 }
 
 
@@ -139,15 +154,23 @@ function delay(timeMS) {
 
 async function loadHTML(id, file) {
     const el = document.getElementById(id);
-    if (!el) {return}
-    const thing = await fetch(file);
-    if (thing.status == 404) {return}
+    if (!el) {return false}
+    try {
+        var thing = await fetch(file);
+    }
+    finally {
+        if (!thing.ok) {
+            console.log("Page doesn't exist :(")
+            return false
+        }
+    }
     const html = await thing.text();
     el.innerHTML = html;
     const scripts = el.querySelectorAll("script");
     for (let i = 0; i < scripts.length; i++) {
         await loadScript(scripts[i]);
     }
+    return true
 }
 
 async function loadScript(oldScript) {
@@ -220,18 +243,30 @@ function checkCookie(cname, none = "") {
     return none
 }
 
-function onLinkClick(el) {
+async function onLinkClick(el) {
     // console.log("Clicked: " + el.getAttribute("title"));
-    loadPage(el.getAttribute("href"));
+    await loadPage(el.getAttribute("href"), true);
 }
 
-function loadPage(page) {
+async function onPageNull() {
+    window.addEventListener("page-done", () => {
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                alert("The page you are looking for doesn't exist :(")
+            },0);
+        })
+    })
+    await loadPage("/home", false);
+}
+
+async function loadPage(page, pushState) {
     scriptsToExecute = 0;
     // console.log("Scripts to execute: " + scriptsToExecute);
-    loadHTML("pageContainer", page);
+    result = await loadHTML("pageContainer", page);
+    // console.log(result ? "Page loaded" : "Page not loaded for some reason :(")
     url.searchParams.set("z", page);
     let newUrl = url.toString().replace(/%2F/gi,"/");
-    history.pushState({}, '', newUrl);
+    if (pushState) history.pushState({}, '', newUrl); else history.replaceState({}, '', newUrl);
 }
 
 /*----------- Functions that run once and just do a thing -----------*/

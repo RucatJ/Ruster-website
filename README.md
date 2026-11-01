@@ -12,8 +12,11 @@ The site is hosted on Neocities [here](https://ruster.neocities.org).
 
 ## Changelog
 
-### 1/11/26
-Finally created git repo
+View changes to site inner workings.
 
-Cleaned up common.js and made loading of pages wait for DOMContentLoaded
-event
+### 1/11/26
+* Finally created git repo.
+
+* Cleaned up common.js and made loading of pages wait for DOMContentLoaded event.
+
+* Make page default to home page.
