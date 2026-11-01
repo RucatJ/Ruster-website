@@ -2,6 +2,8 @@ let params = new URLSearchParams(document.location.search)
 const url = new URL(window.location)
 let page = url.searchParams.get("z")
 
+page = page ? page : "/home";
+
 const root = document.documentElement;
 
 let stuff = ",?!=+-_/ ";
