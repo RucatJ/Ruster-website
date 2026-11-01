@@ -13,6 +13,5 @@ The site is hosted on Neocities [here](ruster.neocities.org).
 ## Changelog
 
 ### 1/11/26
-[1]
 Finally created git repo
 

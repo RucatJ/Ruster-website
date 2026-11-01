@@ -2,26 +2,6 @@ let params = new URLSearchParams(document.location.search)
 const url = new URL(window.location)
 let page = url.searchParams.get("z")
 
-async function load() {
-    document.addEventListener("script-loaded", () => {
-        scriptsToExecute ++;
-        // console.log("Scripts to execute: " + scriptsToExecute);
-    })
-
-    document.addEventListener("script-finish", () => {
-        scriptsToExecute --;
-        // console.log("Scripts to execute: " + scriptsToExecute);
-        if (scriptsToExecute <= 0) afterLoad()
-    })
-
-    await loadHTML("title-box", "/loaf/title.html");
-    afterMainLoad();
-    await loadHTML("pageContainer", page);
-}
-
-load()
-
-const getExpandButtons = document.getElementsByClassName("expand-button");
 const root = document.documentElement;
 
 let stuff = ",?!=+-_/ ";
@@ -71,6 +51,8 @@ const splitR = new RegExp(`[^${stuff}]+[${stuff}]*|[${stuff}]+`, "g");
 
 var mobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+window.addEventListener("DOMContentLoaded", loadShit);
+
 if (mobile) {
     if (viewCount == 0) alert("Hello mobile user! This website will be more mobile friendly in future, I promise.");
     console.log("Mobile device detected");
@@ -80,21 +62,44 @@ if (mobile) {
     }
 }
 
-// Runs after html from other pages has loaded + some other stuff
+// Runs when the first
+
+// Runs after boilerplate has loaded
 
 function afterMainLoad() {
+    console.log("After main load");
     views = viewCount();
-    welcome(views)
+    welcome(views);
     setTimeout(setUpScroll(), 2000);
 }
 
+// Runs after html from other pages has loaded + some other stuff
+
 function afterLoad() {
-    // console.log("Afterload");
+    console.log("After load");
     setUpLinks();
     setUpContentBoxes();
 }
 
 /*----------- Functions -----------*/
+
+async function loadShit() {
+    document.addEventListener("script-loaded", () => {
+        scriptsToExecute ++;
+        // console.log("Scripts to execute: " + scriptsToExecute);
+    })
+
+    document.addEventListener("script-finish", () => {
+        scriptsToExecute --;
+        // console.log("Scripts to execute: " + scriptsToExecute);
+        if (scriptsToExecute <= 0) afterLoad()
+    })
+
+    await loadHTML("title-box", "/loaf/title.html");
+    afterMainLoad();
+    await loadHTML("pageContainer", page);
+}
+
 
 function closeBox(elem) {
     elem.style = "-webkit-line-clamp: 1;";
@@ -112,10 +117,6 @@ function expand(elem) {
     else {
         elem.setAttribute("class", elem.getAttribute("class").replace("closed", "open"));
     }
-}
-
-for (let i=0; i<getExpandButtons.length; i++) {
-    getExpandButtons[i].style.width = document.querySelector(".page").style.width;
 }
 
 function randRange(min, max) {
