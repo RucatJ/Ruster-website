@@ -15,3 +15,5 @@ The site is hosted on Neocities [here](https://ruster.neocities.org).
 ### 1/11/26
 Finally created git repo
 
+Cleaned up common.js and made loading of pages wait for DOMContentLoaded
+event
