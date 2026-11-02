@@ -20,11 +20,11 @@ const items = [
     "Always hungry",
     "The line above the U is called a fada",
     "Pronounced 'Roo-ster'",
-    "ᚈᚐ ᚑᚌᚆᚐᚋ ᚔ ᚒᚅᚔᚉᚑᚇᚓ",
+    "ᚈᚐᚐ ᚑᚌᚆᚐᚋ ᚔ ᚒᚅᚔᚉᚑᚇᚓ",
     "Cats *do* have feelings",
     "Crunchy peanutbutter is superior",
     "ò̧̦̥̬̩̤̣̮̯̱̰̭̗̖́̂̃̄̅̑̆̇̈̉̊̏̋̌̍̎̐̒̓̔̕͟͜͝͡͞o",
-    "Regulated by me!",
+    "Regulated by the bank of me!",
     "Best viewed in lynx version 2.8.7 or below",
     "I'm Not Crazy I'm Not Crazy I'm Not Crazy I'm Not Crazy",
     "Yes you are",
@@ -120,11 +120,6 @@ async function loadShit() {
 
 function closeBox(elem) {
     elem.style = "-webkit-line-clamp: 1;";
-}
-
-const elems = document.getElementsByClassName("expand");
-for (let i=0; i < elems.length; i++) {
-    elems[i].setAttribute("onclick", "expand(this)");
 }
 
 function expand(elem) {
@@ -270,6 +265,13 @@ async function loadPage(page, pushState) {
 }
 
 /*----------- Functions that run once and just do a thing -----------*/
+
+function setUpExpandyThings() {
+    const elems = document.getElementsByClassName("expand");
+    for (let i=0; i < elems.length; i++) {
+        elems[i].setAttribute("onclick", "expand(this)");
+    }
+}
 
 function setUpContentBoxes() {
     const getContent = document.getElementsByClassName("content");
