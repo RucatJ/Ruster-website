@@ -20,3 +20,7 @@ View changes to site inner workings.
 * Cleaned up common.js and made loading of pages wait for DOMContentLoaded event.
 
 * Make page default to home page.
+
+* Handle bad urls (z = non-existant filepath)
+
+* Make menu scroll instead of growing
