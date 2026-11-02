@@ -82,6 +82,7 @@ function afterLoad() {
     console.log("After load");
     setUpLinks();
     setUpContentBoxes();
+    setUpExpandyThings();
 }
 
 /*----------- Functions -----------*/

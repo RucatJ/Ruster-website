@@ -14,6 +14,9 @@ The site is hosted on Neocities [here](https://ruster.neocities.org).
 
 View changes to site inner workings.
 
+### 2/11/26
+* Fix expandable images to work with page loading
+
 ### 1/11/26
 * Finally created git repo.
 
